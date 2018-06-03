@@ -2,6 +2,7 @@ import React from "react";
 import { Button, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Ping} from "../actions/ActionTypes";
 
 const LobbyPresentation = ({pingId, onPingClick}) => (
     <View style={styles.scrollViewContainer}>
@@ -16,7 +17,7 @@ const LobbyPresentation = ({pingId, onPingClick}) => (
         {Array.from({ length: 20 }).map((item, i) => (
             <TouchableHighlight
                 key={i}
-                onPress={() => {}}
+                onPress={() => {console.log("Clicking on game")}}
                 style={[styles.box, styles.horizontalBox]}
             >
               <Text>{i}</Text>
@@ -35,13 +36,18 @@ const LobbyPresentation = ({pingId, onPingClick}) => (
           backgroundColor: "#847f74",
         }}>Footer</Text>
         <Button
-            onPress={() => onPingClick(pingId)}
-            title="New Game"
+            onPress={() => {
+              console.log('You tapped the button!');
+            }}
+            title="Ping"
             color="#841584"
             style={{
               flex: 4,
             }}
         />
+        <Text style={{
+          flex: 4,
+        }}>{pingId}</Text>
       </View>
     </View>
 );
@@ -67,17 +73,18 @@ const styles = StyleSheet.create({
 
 
 LobbyPresentation.propTypes = {
+  pingReducer: PropTypes.object,
   pingId: PropTypes.number.isRequired,
   onPingClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ping}) => ({
-  pingId: ping,
+const mapStateToProps = ({pingReducer}) => ({
+  pingId: pingReducer.pingId,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onPingClick(pingId) {
-    const ping = {"type": "Ping", "payload": {"id": pingId}};
+  onPingClick: () => {
+    const ping = {"type": Ping};
     console.log("Dispatching ping message", ping);
     dispatch(ping)
   }
