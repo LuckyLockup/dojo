@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Ping} from "../actions/ActionTypes";
@@ -36,9 +36,7 @@ const LobbyPresentation = ({pingId, onPingClick}) => (
           backgroundColor: "#847f74",
         }}>Footer</Text>
         <Button
-            onPress={() => {
-              console.log('You tapped the button!');
-            }}
+            onPress={onPingClick}
             title="Ping"
             color="#841584"
             style={{
