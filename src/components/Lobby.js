@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Ping} from "../actions/ActionTypes";
 
-const LobbyPresentation = ({pingId, onPingClick}) => (
+const LobbyPure = ({pingId, onPingClick}) => (
     <View style={styles.scrollViewContainer}>
       <ScrollView
           contentContainerStyle={styles.scrollViewContentContainerStyle}
@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
 });
 
 
-LobbyPresentation.propTypes = {
+LobbyPure.propTypes = {
   pingReducer: PropTypes.object,
   pingId: PropTypes.number.isRequired,
   onPingClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({pingReducer}) => ({
-  pingId: pingReducer.pingId,
+const mapStateToProps = ({PingReducer}) => ({
+  pingId: PingReducer.pingId,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,7 +88,9 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
+// const ping = () => { "type" : Ping};
+
 export const Lobby = connect(
     mapStateToProps,
     mapDispatchToProps
-)(LobbyPresentation);
+)(LobbyPure);

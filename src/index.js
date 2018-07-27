@@ -5,6 +5,7 @@ import store from "./utilities/storage/store";
 import TopLevelComponent from './screens/EntryScreen';
 import {Home} from "./components/Home";
 import {Lobby} from "./components/Lobby";
+import {Table} from "./components/Table";
 import Routing, {Router} from './utilities/routing/index';
 import {View} from 'react-native';
 
@@ -21,6 +22,7 @@ class App extends React.Component {
                     <Route path='/' component={TopLevelComponent}/>
                     <Route path="/home" component={Home}/>
                     <Route path="/lobby" component={Lobby}/>
+                    <Route path="/table" component={Table}/>
                   </View>
                 </Router>
             </Provider>

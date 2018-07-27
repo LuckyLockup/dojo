@@ -1,0 +1,161 @@
+{
+  "type": "RiichiState",
+  "payload": {
+    "tableId": "table_424",
+    "admin": {
+      "id": 3000,
+      "nickname": "Akagi"
+    },
+    "states": [
+      {
+        "type": "RiichiPlayerState",
+        "payload": {
+          "player": {
+            "type": "HumanPlayer",
+            "payload": {
+              "user": {
+                "id": 3000,
+                "nickname": "Akagi"
+              },
+              "position": "EastPosition"
+            }
+          },
+          "closedHand": [
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x"
+          ],
+          "openHand": [],
+          "currentTile": "x",
+          "discard": [],
+          "online": true
+        }
+      },
+      {
+        "type": "RiichiPlayerState",
+        "payload": {
+          "player": {
+            "type": "HumanPlayer",
+            "payload": {
+              "user": {
+                "id": 8371,
+                "nickname": "Akagi"
+              },
+              "position": "SouthPosition"
+            }
+          },
+          "closedHand": [
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x"
+          ],
+          "openHand": [],
+          "discard": [],
+          "online": true
+        }
+      },
+      {
+        "type": "RiichiPlayerState",
+        "payload": {
+          "player": {
+            "type": "HumanPlayer",
+            "payload": {
+              "user": {
+                "id": 2819,
+                "nickname": "Akagi"
+              },
+              "position": "WestPosition"
+            }
+          },
+          "closedHand": [
+            "east",
+            "east",
+            "red",
+            "red",
+            "1_pin",
+            "1_pin",
+            "6_pin",
+            "6_pin",
+            "9_pin",
+            "3_sou",
+            "3_wan",
+            "4_wan",
+            "7_wan"
+          ],
+          "openHand": [],
+          "discard": [],
+          "online": true
+        }
+      },
+      {
+        "type": "RiichiPlayerState",
+        "payload": {
+          "player": {
+            "type": "HumanPlayer",
+            "payload": {
+              "user": {
+                "id": 2719,
+                "nickname": "Akagi"
+              },
+              "position": "NorthPosition"
+            }
+          },
+          "closedHand": [
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x"
+          ],
+          "openHand": [],
+          "discard": [],
+          "online": true
+        }
+      }
+    ],
+    "uraDoras": [
+      "8_wan"
+    ],
+    "deck": 69,
+    "turn": 1,
+    "points": {
+      "type": "TablePoints",
+      "payload": {
+        "points": {
+          "EastPosition": 25000,
+          "SouthPosition": 25000,
+          "WestPosition": 25000,
+          "NorthPosition": 25000
+        }
+      }
+    }
+  }
+}

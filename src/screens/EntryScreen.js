@@ -28,7 +28,7 @@ class EntryScreen extends React.Component {
                 justifyContent: 'space-around',
               }}>
                 <Link
-                    to="/"
+                    to="/home"
                     style={{
                       alignItems: 'center',
                       padding: 10,
@@ -44,20 +44,21 @@ class EntryScreen extends React.Component {
                     }}>
                   <Text>Lobby</Text>
                 </Link>
+                <Link
+                    to="/table"
+                    style={{
+                      flex: 8,
+                      alignItems: 'center',
+                      padding: 10,
+                    }}>
+                  <Text>Table</Text>
+                </Link>
               </View>
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    }
-});
 
 function mapStateToProps(state) {
     return ({
