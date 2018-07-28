@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {Component} from "react";
 import {
   StyleSheet,
   Text,
@@ -10,115 +10,52 @@ import {
 } from 'react-native'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import * as domain from '../domain/domain'
 import {discardTile, getState, joinTable, startGame} from "../actions/ActionCreators";
 import {withRouter} from 'react-router'
-import {renderTile, renderTileInHand} from "./table/Tile";
+import {PlayerState} from "./table/PlayerState";
+import {EnemyState} from "./table/EnemyState";
+import * as domain from "../domain/domain";
 
 
-const TablePure = ({
-                     table,
-                     onGetState,
-                     onJoinTable,
-                     onStartGame,
-                     onDiscardTile,
-                     location
-                   }) => {
-  const tableId = location.pathname.split("/").pop();
+class _Table extends Component {
+  tableId = this.props.location.pathname.split("/").pop();
 
-  return <View>
-    <Button
-        onPress={() => onGetState(tableId)}
-        title="Get state"
-        color="#841584"
-        style={{
-          flex: 1,
-        }}
-    />
-    <Button
-        onPress={() => onJoinTable(tableId)}
-        title="Join Game"
-        color="#078919"
-        style={{
-          flex: 1,
-        }}
-    />
-    <Button
-        onPress={() => onStartGame(tableId)}
-        title="Start Game"
-        color="#33FF4F"
-        style={{
-          flex: 1,
-        }}
-    />
-    {playerState(table, onDiscardTile)}
-    {otherHands(table)}
-    <Text>Under the table</Text>
-  </View>;
-};
-
-const playerState = (table, onDiscardTile) => {
-  if (table === undefined || table.states === undefined) {
-    return <Text>Loading player hand...</Text>;
+  render() {
+    const table = this.props.tables[this.tableId];
+    return <View>
+      <Button
+          onPress={() => this.props.onGetState(this.tableId)}
+          title="Get state"
+          color="#841584"
+          style={{
+            flex: 1,
+          }}
+      />
+      <Button
+          onPress={() => this.props.onJoinTable(this.tableId)}
+          title="Join Game"
+          color="#078919"
+          style={{
+            flex: 1,
+          }}
+      />
+      <Button
+          onPress={() => this.props.onStartGame(this.tableId)}
+          title="Start Game"
+          color="#33FF4F"
+          style={{
+            flex: 1,
+          }}
+      />
+      {playerState(table, this.props.onDiscardTile)}
+      {otherHands(table)}
+      <Text>Under the table</Text>
+    </View>;
   }
-  let hand = domain.playerState(table.states[0]);
+}
 
-  const discardTile = tile => onDiscardTile(table.tableId, table.gameId, table.turn, tile);
-
-  return <View>
-    <Text>Position: {hand.payload.player.payload.position}</Text>
-    <View style={{
-      flexDirection: 'row'
-    }}>
-      <Text>Closed hand: </Text>
-      {hand.payload.closedHand.map(t => renderTileInHand(t, discardTile))}
-      <Text> </Text>
-      <Text>{renderTileInHand(hand.payload.currentTile, discardTile)}</Text>
-    </View>
-    <View style={{
-      flexDirection: 'row'
-    }}>
-      <Text>Discard: </Text>
-      {hand.payload.discard.reverse().map(t => renderTile(t))}
-    </View>
-  </View>
-};
-
-
-const otherHands = (table) => {
-  if (table === undefined || table.states === undefined || table.states.slice(1) === undefined) {
-    return <View/>;
-  }
-  return <View>
-    {table.states.slice(1).map(hand => enemyState(hand))}
-  </View>
-};
-
-const enemyState = (hand) => {
-  return <View>
-    <Text>Position: {hand.payload.player.payload.position}</Text>
-    <View style={{
-      flexDirection: 'row'
-    }}>
-      <Text>Closed hand: </Text>
-      {hand.payload.closedHand.map(t => renderTile(t))}
-      <Text> </Text>
-      <Text>{renderTile(hand.payload.currentTile)}</Text>
-    </View>
-    <View style={{
-      flexDirection: 'row'
-    }}>
-      <Text>Discard: </Text>
-      {hand.payload.discard.reverse().map(t => renderTile(t))}
-    </View>
-  </View>
-};
-
-
-
-
-TablePure.propTypes = {
-  table: PropTypes.object.isRequired,
+_Table.propTypes = {
+  tables: PropTypes.object.isRequired,
   onGetState: PropTypes.func.isRequired,
   onJoinTable: PropTypes.func.isRequired,
   onStartGame: PropTypes.func.isRequired,
@@ -127,8 +64,27 @@ TablePure.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({table, user}) => ({
-  table,
+const otherHands = (table) => {
+  if (table === undefined || table.states === undefined || table.states.slice(1) === undefined) {
+    return <View/>;
+  }
+  return <View>
+    {table.states.slice(1).map(hand => EnemyState(hand))}
+  </View>
+};
+
+const playerState = (table, onDiscardTile) => {
+  if (table === undefined || table.states === undefined || table.states.length < 1) {
+    return <View/>;
+  }
+
+  let hand = domain.playerState(table.states[0]);
+  return PlayerState(table, hand, onDiscardTile)
+};
+
+
+const mapStateToProps = ({tables, user}) => ({
+  tables: tables,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -141,4 +97,4 @@ const mapDispatchToProps = dispatch => ({
 export const Table = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(TablePure));
+)(_Table));

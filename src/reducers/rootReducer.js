@@ -7,6 +7,6 @@ import {userReducer} from "./userReducer";
 //this is the list of final reducers
 export default combineReducers({
   ping: pingReducer,
-  table: tableReducer,
+  tables: tableReducer,
   user: userReducer,
 })

@@ -13,4 +13,9 @@ const _playerState = {
   }
 };
 
+
+const _tableState = {
+
+};
+
 export const playerState = (obj) => Object.assign({}, _playerState, obj);

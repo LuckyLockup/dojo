@@ -9,3 +9,8 @@ export const RiichiState = "RiichiState";
 export const JoinAsPlayer = "JoinAsPlayer";
 export const StartGame = "StartGame";
 export const DiscardTile = "DiscardTile";
+
+
+//actions from server
+export const TileDiscarded = "TileDiscarded";
+export const TileFromWallTaken = "TileFromWallTaken"

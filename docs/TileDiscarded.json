@@ -1,0 +1,11 @@
+{
+  "type": "TileDiscarded",
+  "payload": {
+    "tableId": "556eb81c-87ad-1f81-53cf-671f679b8e77",
+    "gameId": 666,
+    "turn": 3,
+    "position": "SouthPosition",
+    "tile": "5_wan",
+    "commands": []
+  }
+}
