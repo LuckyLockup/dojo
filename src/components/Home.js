@@ -7,7 +7,8 @@ import {
 import PropTypes from 'prop-types';
 import {createTable, joinTable} from "../actions/ActionCreators";
 import {connect} from "react-redux";
-import {Link} from "../utilities/routing/index";
+import { withRouter } from 'react-router'
+
 
 
 const randomTableId = guid();
@@ -22,20 +23,18 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
 
-export const HomePure = ({tableId, userId, onCreateTable}) => (
+export const HomePure = ({tableId, userId, onCreateTable, history}) => (
     <View style={{
       display: "flex",
     }}>
       <Text>
         Home
       </Text>
-      <Link to={"/table/"} >
         <Button
-            onPress={() => onCreateTable(tableId, userId)}
+            onPress={() => onCreateTable(tableId, userId, history)}
             title={"Create table " + tableId}
             color="#841584"
         />
-      </Link>
     </View>
 
 );
@@ -44,6 +43,8 @@ HomePure.propTypes = {
   userId: PropTypes.number.isRequired,
   tableId: PropTypes.string,
   onCreateTable: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = ({table, user}) => ({
@@ -53,13 +54,14 @@ const mapStateToProps = ({table, user}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onCreateTable: (tableId, userId) => {
+  onCreateTable: (tableId, userId, history) => {
+    history.push("/table/" + tableId);
     dispatch(createTable(tableId, userId));
   }
 });
 
 
-export const Home = connect(
+export const Home = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(HomePure);
+)(HomePure));

@@ -22,9 +22,9 @@ class App extends React.Component {
                     {Header}
                     <View>
                       <Switch>
-                        <Route path="/home" component={Home}/>
                         <Route path="/lobby" component={Lobby}/>
-                        <Route path="/table" component={Table}/>
+                        <Route path="/table/:tableId" component={Table}/>
+                        <Route path="/" component={Home}/>
                       </Switch>
                     </View>
                   </View>
