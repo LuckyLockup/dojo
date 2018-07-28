@@ -11,7 +11,14 @@ POST /api/v0.1/games/riichi
 ## Ws
 
 ### Get state
-```
-{"type":"GetState","payload":{"tableId":"table_424"}}
+Deployment
 
+```
+npm run build
+zip -r build.zip build
+scp build.zip root@balmora:/root/dojo/build.zip
+
+cd dojo/
+unzip build.zip
+cp -a build/. /var/www/html
 ```

@@ -76,8 +76,8 @@ LobbyPure.propTypes = {
   onPingClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({PingReducer}) => ({
-  pingId: PingReducer.pingId,
+const mapStateToProps = ({ping}) => ({
+  pingId: ping.pingId,
 });
 
 const mapDispatchToProps = dispatch => ({

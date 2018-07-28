@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "../../reducers/RootReducer";
+import rootReducer from "../../reducers/rootReducer";
 import { logger } from 'redux-logger'
 import {api} from "../network/api";
 import {ws, init} from "../network/ws";

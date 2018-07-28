@@ -144,8 +144,8 @@ TablePure.propTypes = {
   onDiscardTile: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({TableReducer, UserReducer}) => ({
-  table: TableReducer,
+const mapStateToProps = ({table, user}) => ({
+  table,
 });
 
 const mapDispatchToProps = dispatch => ({

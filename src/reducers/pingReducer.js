@@ -1,6 +1,6 @@
 import {Ping} from "../actions/ActionTypes";
 
-export const PingReducer = (state = {pingId: 10}, action) => {
+export const pingReducer = (state = {pingId: 10}, action) => {
   switch (action.type) {
     case Ping:
       return Object.assign({}, state, {

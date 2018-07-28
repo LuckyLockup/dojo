@@ -1,16 +1,3 @@
-/*
- "payload": {
-          "player": {
-            "type": "HumanPlayer",
-            "payload": {
-              "user": {
-                "id": 2594,
-                "nickname": "Akagi"
-              },
-              "position": "EastPosition"
-            }
-          },
- */
 const _playerState = {
   type: "RiichiPlayerState",
   payload: {

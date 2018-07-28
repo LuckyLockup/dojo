@@ -29,10 +29,10 @@ export const HomePure = ({tableId, userId, onCreateTable}) => (
       <Text>
         Home
       </Text>
-      <Link to="/table">
+      <Link to={"/table/"} >
         <Button
-            onPress={() => onCreateTable(randomTableId, userId)}
-            title={"Create table " + randomTableId}
+            onPress={() => onCreateTable(tableId, userId)}
+            title={"Create table " + tableId}
             color="#841584"
         />
       </Link>
@@ -46,15 +46,15 @@ HomePure.propTypes = {
   onCreateTable: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({TableReducer, UserReducer}) => ({
-  userId: UserReducer.userId,
-  tableId: TableReducer.tableId,
+const mapStateToProps = ({table, user}) => ({
+  userId: user.userId,
+  // tableId: tableReducer.tableId,
+  tableId: randomTableId,
 });
 
 const mapDispatchToProps = dispatch => ({
   onCreateTable: (tableId, userId) => {
     dispatch(createTable(tableId, userId));
-    dispatch(joinTable(tableId));
   }
 });
 

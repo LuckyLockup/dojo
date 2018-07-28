@@ -5,7 +5,7 @@ let socket;
 let connected = false;
 
 export const init = ( store ) => {
-  const userId = store.getState().UserReducer.userId;
+  const userId = store.getState().user.userId;
   start(store, config.wsUrl + userId);
 };
 
