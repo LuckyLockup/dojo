@@ -9,4 +9,4 @@ export const prodConfig = {
   wsUrl: "wss://api.luckylockup.com/api/v0.1/ws/",
 };
 
-export const config = prodConfig;
+export const config = localConfig;
