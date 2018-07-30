@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "postinstall": "node ./postinstall.js",
     "test": "jest",
-    "web": "react-scripts start",
-    "build": "react-native-scripts build",
+    "web": "react-scripts-ts start",
+    "build": "react-native-scripts-ts build",
     "test:web": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -26,7 +25,6 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
-    "react-native-scripts-ts": "1.15.0",
     "@types/jest": "^23.3.1",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
@@ -37,17 +35,17 @@
     "@types/react-router-native": "^4.2.3",
     "@types/react-test-renderer": "^16.0.1",
     "@types/redux-logger": "^3.0.6",
-    "@types/redux-thunk": "^2.1.0",
     "babel-jest": "23.0.1",
     "babel-plugin-transform-react-remove-prop-types": "0.4.10",
     "babel-preset-react-native": "4.0.0",
     "jest": "23.1.0",
+    "react-native-scripts-ts": "1.15.0",
     "react-native-typescript-transformer": "^1.2.10",
+    "react-scripts-ts": "^2.16.0",
     "react-test-renderer": "16.3.1",
     "ts-jest": "^23.0.1",
     "tslib": "^1.9.3",
-    "typescript": "^2.9.2",
-    "react-scripts": "1.1.4"
+    "typescript": "^2.9.2"
   },
   "jest": {
     "preset": "react-native"

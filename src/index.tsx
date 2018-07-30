@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import {Provider} from "react-redux";
-import ReactNative from 'react-native'
+import { AppRegistry } from "react-native";
 import store from "./utilities/storage/store";
 import {Home} from "./components/Home";
 import {Lobby} from "./components/Lobby";
@@ -18,20 +18,22 @@ class App extends React.Component {
         return (
             <Provider store={store}>
                 <Router>
-                  <View>
-                    {Header}
                     <View>
-                      <Switch>
-                        <Route path="/lobby" component={Lobby}/>
-                        <Route path="/table/:tableId" component={Table}/>
-                        <Route path="/" component={Home}/>
-                      </Switch>
+                        {Header}
+                        <View>
+                            <Switch>
+                                <Route path="/lobby" component={Lobby}/>
+                                <Route path="/table/:tableId" component={Table}/>
+                                <Route path="/" component={Home}/>
+                            </Switch>
+                        </View>
                     </View>
-                  </View>
                 </Router>
             </Provider>
         );
     }
 }
 
-ReactNative.render(<App/>, document.getElementById('root'));
+// register the app
+AppRegistry.registerComponent("root", () => App);
+AppRegistry.runApplication('root', { rootTag: document.getElementById('root') });
