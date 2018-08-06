@@ -1,4 +1,7 @@
 import {User} from "src/features/user/user";
+import {TestingState} from "./test";
+import {ClaimingAction} from "./Actions";
+import {Position} from "./positions";
 
 export interface NoGame {
     tableId: string;
@@ -16,19 +19,23 @@ export interface Game {
 
 export type TableState = NoGame | Game
 
+export interface TableView {
+    table: TableState,
+    commands: Array<ClaimingAction>,
+    gameEnded?: string,
+}
+
 export function isGameStarted(game: TableState | undefined): game is Game {
     return game !== undefined && (<Game>game).states !== undefined &&  (<Game>game).states.length > 0;
 }
 
-export const East = "East";
-export const North = "North";
-export const West = "West";
-export const South = "South";
-export type Position = typeof East | typeof North | typeof West | typeof South
 
 export const HumanPlayer = "HumanPlayer";
 export const AIPlayer = "AIPlayer";
 export type PlayerType = typeof HumanPlayer | typeof  AIPlayer;
+
+export const AIDuck = "Duck";
+export type AIType = typeof AIDuck;
 
 export interface Player {
     type: PlayerType,
@@ -46,7 +53,7 @@ export interface PlayerState {
         readonly player: Player,
         readonly closedHand: Array<string>,
         readonly currentTile?: string,
-        readonly openHand: Array<any>,
+        readonly openHand: Array<WsDeclaredSet>,
         readonly discard: Array<string>,
         readonly online: boolean,
     }
@@ -96,3 +103,41 @@ export function compareTiles(a: string, b: string) {
     return orderA - orderB;
 }
 
+export interface RiichiConfig {
+    type:  "RiichiConfig";
+    payload: {
+        defaultEastAi?: AIType,
+        defaultSouthAi?: AIType,
+        defaultWestAi?: AIType,
+        defaultNorthAi?: AIType,
+        nextTileDelay?: string,
+        turnDuration?: string,
+        testingTiles?: TestingState
+    }
+}
+
+export interface HandValue {
+    type: "HandValue",
+    payload: {
+        miniPoints: number,
+        yakus: number,
+    }
+}
+
+export interface GameScore {
+    type: "GameScore",
+    payload: {
+        winner: Position,
+        points: {}
+    }
+}
+
+export interface WsDeclaredSet {
+    type: "WsDeclaredSet",
+    payload: {
+        claimedTile: string,
+        tails: Array<string>,
+        from: Position,
+        turn: number,
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "TileClaimed",
+  "payload": {
+    "tableId": "table_407",
+    "gameId": 100926,
+    "setName": "pung",
+    "set": {
+      "type": "WsDeclaredSet",
+      "payload": {
+        "claimedTile": "3_pin",
+        "tails": [
+          "3_pin",
+          "3_pin"
+        ],
+        "from": "EastPosition",
+        "turn": 2
+      }
+    },
+    "position": "SouthPosition"
+  }
+}

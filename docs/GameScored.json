@@ -1,0 +1,15 @@
+{
+  "type": "GameScored",
+  "payload": {
+    "tableId": "4a607f18-ea91-6072-eebd-c67d7520b681",
+    "gameId": 421,
+    "turn": 5,
+    "score": {
+      "type": "GameScore",
+      "payload": {
+        "winner": "EastPosition",
+        "points": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "TsumoDeclared",
+  "payload": {
+    "tableId": "table_562",
+    "gameId": 100962,
+    "turn": 3,
+    "position": "SouthPosition"
+  }
+}

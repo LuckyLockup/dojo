@@ -1,0 +1,13 @@
+{
+  "type": "ClaimChow",
+  "payload": {
+    "tableId": "b76c8509-27d0-8735-ec7a-00c4adc9aaf8",
+    "gameId": 338,
+    "turn": 8,
+    "tile": "7_wan",
+    "tiles": [
+      "8_wan",
+      "9_wan"
+    ]
+  }
+}

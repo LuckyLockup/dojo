@@ -1,0 +1,9 @@
+{
+  "type": "RonDeclared",
+  "payload": {
+    "tableId": "6689c9f2-1e2f-e2a4-3376-11c7e6d3f742",
+    "gameId": 596,
+    "turn": 4,
+    "position": "EastPosition"
+  }
+}

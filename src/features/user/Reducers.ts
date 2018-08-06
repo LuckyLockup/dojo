@@ -5,8 +5,8 @@ interface UserState {
 }
 
 export const initialState: UserState = {
-    userId: 42,
-    // userId: Math.floor(Math.round(10000))
+    // userId: 42,
+    userId: Math.floor(Math.round(10000))
 };
 
 export default (state: UserState = initialState, action: Actions.All) => {

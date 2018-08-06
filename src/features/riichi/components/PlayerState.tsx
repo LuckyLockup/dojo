@@ -3,28 +3,23 @@ import {PlayerState as PlayerStateProps} from "src/features/riichi/riichi"
 import {
     Text,
     View,
-    Image, TouchableOpacity
+    TouchableOpacity
 } from 'react-native'
 import {HandStyle} from "./HandStyles";
+import {tileImage} from "./TileImage";
+import {DeclaredSet} from "./DeclaredSet";
 
 
 
 export class PlayerState extends React.Component<PlayerStateProps
     & { discardTile: (t: string) => void }
     & { style: HandStyle}> {
-    renderImage(tile: string, index: number) {
-        return <Image
-            key={index}
-            style={{width: 40, height: 50}}
-            source={{uri: '/assets/riichi/' + tile + ".png"}}
-        />;
-    }
 
     renderCurrentTile() {
         const currentTile = this.props.payload.currentTile;
         if (currentTile) {
             return <TouchableOpacity onPress={() => this.props.discardTile(currentTile)}>
-                {this.renderImage(currentTile, 14)}
+                {tileImage(currentTile, 14)}
             </TouchableOpacity>;
         }
         return <View/>
@@ -38,7 +33,7 @@ export class PlayerState extends React.Component<PlayerStateProps
                 <Text>Closed hand: </Text>
                 {this.props.payload.closedHand.map((tile, index) =>
                     <TouchableOpacity key={index} onPress={() => this.props.discardTile(tile)}>
-                        {this.renderImage(tile, index)}
+                        {tileImage(tile, index)}
                     </TouchableOpacity>
                 )}
                 <Text> </Text>
@@ -46,7 +41,14 @@ export class PlayerState extends React.Component<PlayerStateProps
             </View>
             <View style={this.props.style.discard}>
                 <Text>Discard: </Text>
-                {this.props.payload.discard.map((t, i) => this.renderImage(t, i))}
+                {this.props.payload.discard.map((t, i) => tileImage(t, i))}
+            </View>
+            <View style={this.props.style.openHand}>
+                <Text>OpenHand: </Text>
+                {this.props.payload.openHand.map((set, i) => <DeclaredSet
+                    current={this.props.payload.player.payload.position}
+                    set={set}
+                    key={i}/>)}
             </View>
         </View>
     }

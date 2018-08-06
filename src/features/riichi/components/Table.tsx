@@ -16,6 +16,8 @@ import {AnyAction} from "redux";
 import {PlayerState} from "./PlayerState";
 import {OpponentHand} from "./OpponentHand";
 import {GameInfo} from "./GameInfo";
+import {ClaimingAction} from "../Actions";
+import {PossibleAction} from "./PossibleAction";
 
 
 export const styles = StyleSheet.create({
@@ -40,6 +42,8 @@ interface State {
     userId: number,
     tableId: string,
     table?: TableState,
+    gameEnded?: string,
+    commands: Array<ClaimingAction>,
 }
 
 interface DispatchProps {
@@ -47,6 +51,7 @@ interface DispatchProps {
     joinTable: (tableId: string) => void;
     startGame: (tableId: string) => void;
     discardTile: (tableId: string, gameId: number, turn: number) => (tile: string) => void;
+    claimCommand: (action: ClaimingAction) => void
 }
 
 class _Table extends React.PureComponent<Props & State & DispatchProps> {
@@ -76,8 +81,9 @@ class _Table extends React.PureComponent<Props & State & DispatchProps> {
             const gameProps = {
                 gameId: this.props.table.gameId,
                 turn:  this.props.table.turn,
-                uraDoras: this.props.table.uraDoras
-            }
+                uraDoras: this.props.table.uraDoras,
+                gameEnded: this.props.gameEnded,
+            };
             return <GameInfo {...gameProps}/>
         }
         return <Text>Game is not started...</Text>
@@ -111,6 +117,10 @@ class _Table extends React.PureComponent<Props & State & DispatchProps> {
             </View>
             {this.gameInfo()}
             {this.playerHand()}
+            <PossibleAction
+                commands={this.props.commands}
+                onclick={this.props.claimCommand}
+            />
             {this.opponentHand(1)}
             {this.opponentHand(2)}
             {this.opponentHand(3)}
@@ -121,10 +131,16 @@ class _Table extends React.PureComponent<Props & State & DispatchProps> {
 
 function mapStateToProps(state: DojoState, props: Props): State {
     const tableId: string = props.location.pathname.split("/").pop()!;
+    const table = tableId && state.riichi.byId[tableId] ?  state.riichi.byId[tableId].table : undefined;
+    const commands = tableId && state.riichi.byId[tableId] && state.riichi.byId[tableId].commands ? state.riichi.byId[tableId].commands : [];
+    const gameEnded = tableId && state.riichi.byId[tableId] && state.riichi.byId[tableId].gameEnded ?
+        state.riichi.byId[tableId].gameEnded : undefined;
     return {
         userId: state.user.userId,
         tableId: tableId,
-        table: tableId ? state.riichi.byId[tableId] : undefined,
+        table: table,
+        commands: commands,
+        gameEnded: gameEnded,
     }
 }
 
@@ -139,8 +155,9 @@ function mapDispatchToProps(dispatch: Redux.Dispatch<AnyAction>, props: Props): 
         startGame: (tableId) => dispatch(startGame(tableId)),
         discardTile: (tableId, gameId, turn) => (tile) => {
             dispatch(discardTile(tableId, gameId, turn, tile))
-        }
+        },
+        claimCommand: (action: ClaimingAction) => dispatch(action)
     }
-};
+}
 
 export const Table = connect(mapStateToProps, mapDispatchToProps)(_Table);

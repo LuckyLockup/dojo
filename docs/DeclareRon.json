@@ -1,0 +1,15 @@
+{
+  "type": "DeclareRon",
+  "payload": {
+    "tableId": "aafcd850-a881-eb21-d81d-0b6405e18b02",
+    "gameId": 746,
+    "turn": 4,
+    "approximateHandValue": {
+      "type": "HandValue",
+      "payload": {
+        "miniPoints": 1,
+        "yakus": 1
+      }
+    }
+  }
+}

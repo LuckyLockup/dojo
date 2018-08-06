@@ -1,0 +1,8 @@
+{
+  "type": "ClaimPung",
+  "payload": {
+    "tableId": "table_407",
+    "gameId": 100926,
+    "turn": 2
+  }
+}
