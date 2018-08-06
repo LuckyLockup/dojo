@@ -1,0 +1,11 @@
+{
+  "type": "TileFromWallTaken",
+  "payload": {
+    "tableId": "55149ef1-e800-84c8-b9c7-7987a849e897",
+    "gameId": 321,
+    "turn": 68,
+    "position": "WestPosition",
+    "tile": "x",
+    "commands": []
+  }
+}

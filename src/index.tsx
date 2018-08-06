@@ -1,17 +1,22 @@
-import * as React from 'react';
-import {Provider} from "react-redux";
-import { AppRegistry } from "react-native";
-import store from "./utilities/storage/store";
-import {Home} from "./components/Home";
-import {Lobby} from "./components/Lobby";
-import {Table} from "./components/Table";
-import Routing, {Router, Switch} from './utilities/routing/index';
+import * as React from 'react'
+import {Provider} from "react-redux"
+import { AppRegistry } from "react-native"
+import Home from "src/features/home/components/Home";
+import {Lobby} from "src/features/lobby/components/Lobby"
+import {Table} from "src/features/riichi/components/Table"
+import Routing, {Router, Switch} from 'src/common/routing/index'
 import {View} from 'react-native';
-import {Header} from "./components/Header";
+import {Header} from "src/common/Header"
+import configureStore from 'src/Store'
+import {init as wsInit} from "src/common/ws";
+import {Action, Store} from "redux";
+import {DojoState} from "./State";
 
 
 const Route = Routing.Route;
 
+const store: Store<DojoState, Action> = configureStore();
+wsInit(store);
 
 class App extends React.Component {
     render() {
@@ -19,7 +24,7 @@ class App extends React.Component {
             <Provider store={store}>
                 <Router>
                     <View>
-                        {Header}
+                        <Header/>
                         <View>
                             <Switch>
                                 <Route path="/lobby" component={Lobby}/>

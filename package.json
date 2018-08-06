@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "web": "react-scripts-ts start",
-    "build": "react-native-scripts-ts build",
+    "build": "react-scripts-ts build",
     "test:web": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -28,7 +28,7 @@
     "@types/jest": "^23.3.1",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
-    "@types/react-native": "^0.56.4",
+    "@types/react-native": "^0.56.5",
     "@types/react-redux": "^6.0.5",
     "@types/react-router": "^4.0.29",
     "@types/react-router-dom": "^4.3.0",
@@ -43,9 +43,10 @@
     "react-native-typescript-transformer": "^1.2.10",
     "react-scripts-ts": "^2.16.0",
     "react-test-renderer": "16.3.1",
+    "redux-devtools-extension": "latest",
     "ts-jest": "^23.0.1",
     "tslib": "^1.9.3",
-    "typescript": "^2.9.2"
+    "typescript": "^3.0.1"
   },
   "jest": {
     "preset": "react-native"
