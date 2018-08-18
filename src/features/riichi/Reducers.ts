@@ -104,28 +104,16 @@ const tileFromTheWallTaken = (table: TableState | undefined,
 };
 
 const removeTilesFromHand = (closedHand: Array<string>, declaredSet: WsDeclaredSet): Array<string> => {
-    let differentTiles = new Set(declaredSet.payload.tiles);
-    if (differentTiles.size > 1) {
-        let tilesToDiscard: Array<number> = declaredSet.payload.tiles
-            .map(tileToDiscard => closedHand.indexOf(tileToDiscard));
-        return closedHand.filter((t, i) => !tilesToDiscard.includes(i));
-    } else if (differentTiles.size == 2) {
-        //pon
-        //FIXME
-        let tilesToRemove = declaredSet.payload.tiles.length;
-        return closedHand.filter(tile => {
-            if (tilesToRemove == 0 || tile !== declaredSet.payload.tiles[0]) {
-                return true;
-            } else {
-               tilesToRemove-=1;
-               return false;
-            }
-        });
-    } else {
-        //kan
-        return closedHand;
-    }
-
+    let tilesToRemove = [...declaredSet.payload.tiles];
+    return closedHand.filter(tile => {
+        if (tilesToRemove.length != 0 && tile == tilesToRemove[0]) {
+            tilesToRemove.shift();
+            console.log("Removing", tile, tilesToRemove);
+            return false
+        } else {
+            return true;
+        }
+    });
 };
 
 const claimTile = (table: TableState | undefined, action: Actions.TileClaimedAction): TableState | undefined => {

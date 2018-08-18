@@ -8,7 +8,7 @@
       "type": "WsDeclaredSet",
       "payload": {
         "claimedTile": "3_pin",
-        "tails": [
+        "tiles": [
           "3_pin",
           "3_pin"
         ],
