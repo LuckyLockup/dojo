@@ -16,9 +16,11 @@ import {DojoState} from "./State";
 const Route = Routing.Route;
 
 const store: Store<DojoState, Action> = configureStore();
-wsInit(store);
 
 class App extends React.Component {
+    componentDidMount() {
+        wsInit(store);
+    }
     render() {
         return (
             <Provider store={store}>

@@ -1,5 +1,4 @@
 import {User} from "src/features/user/user";
-import {TestingState} from "./test";
 import {ClaimingAction} from "./Actions";
 import {Position} from "./positions";
 
@@ -103,6 +102,19 @@ export function compareTiles(a: string, b: string) {
     return orderA - orderB;
 }
 
+interface TestingState {
+    type: "TestingState";
+    payload: {
+        eastHand?: Array<string>,
+        southHand?: Array<string>,
+        westHand?: Array<string>,
+        northHand?: Array<string>,
+        uraDoras?: Array<string>,
+        deadWall?: Array<string>,
+        wall?: Array<string>,
+    }
+}
+
 export interface RiichiConfig {
     type:  "RiichiConfig";
     payload: {
@@ -136,7 +148,7 @@ export interface WsDeclaredSet {
     type: "WsDeclaredSet",
     payload: {
         claimedTile: string,
-        tails: Array<string>,
+        tiles: Array<string>,
         from: Position,
         turn: number,
     }

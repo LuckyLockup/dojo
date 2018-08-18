@@ -40,11 +40,12 @@ export class PossibleAction
             case A.DeclareTsumo:
                 return <Text>{action.type}</Text>;
             case A.ClaimChow:
-                return <View>
+                return <View style={{flexDirection: 'column'}}>
                     <Text>{action.type}</Text>
-                    {tileImage(action.payload.tile, 0)}
-                    {tileImage(action.payload.tiles[0], 1)}
-                    {tileImage(action.payload.tiles[1], 2)}
+                    <View style={{flexDirection: 'row', height: "50px"}}>
+                        {[action.payload.tile, ...action.payload.tiles]
+                            .map((tile, key) => tileImage(tile, key))}
+                    </View>
                 </View>;
             case A.ClaimPung:
                 return <View>

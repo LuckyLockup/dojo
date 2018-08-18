@@ -1,6 +1,6 @@
 import * as A from "./Actions";
 import {DiscardTileAction} from "./Actions";
-// import {ronConfig} from "./test";
+import testConfig from "src/tests/initialConfigs/chowConfig"
 
 export const createTableAction = (tableId: string, userId: number): A.CreateTableAction => {
     return {
@@ -36,7 +36,7 @@ export const startGame = (tableId: string): A.StartGameAction => {
         payload: {
             tableId: tableId,
             gameId: Math.floor(Math.random() * 900) + 100,
-            // config: ronConfig,
+            config: testConfig,
         }
     }
 };

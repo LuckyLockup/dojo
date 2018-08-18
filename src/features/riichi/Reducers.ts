@@ -1,6 +1,6 @@
 import {StringStoreState} from "src/common/utils";
 import * as Actions from "src/features/riichi/Actions";
-import {compareTiles, isGameStarted, NoGame, TableState} from "src/features/riichi/riichi";
+import {compareTiles, isGameStarted, NoGame, TableState, WsDeclaredSet} from "src/features/riichi/riichi";
 
 import {combineReducers, Reducer} from "redux";
 import {TableView} from "./riichi";
@@ -103,15 +103,44 @@ const tileFromTheWallTaken = (table: TableState | undefined,
     return undefined;
 };
 
+const removeTilesFromHand = (closedHand: Array<string>, declaredSet: WsDeclaredSet): Array<string> => {
+    let differentTiles = new Set(declaredSet.payload.tiles);
+    if (differentTiles.size > 1) {
+        let tilesToDiscard: Array<number> = declaredSet.payload.tiles
+            .map(tileToDiscard => closedHand.indexOf(tileToDiscard));
+        return closedHand.filter((t, i) => !tilesToDiscard.includes(i));
+    } else if (differentTiles.size == 2) {
+        //pon
+        //FIXME
+        let tilesToRemove = declaredSet.payload.tiles.length;
+        return closedHand.filter(tile => {
+            if (tilesToRemove == 0 || tile !== declaredSet.payload.tiles[0]) {
+                return true;
+            } else {
+               tilesToRemove-=1;
+               return false;
+            }
+        });
+    } else {
+        //kan
+        return closedHand;
+    }
+
+};
+
 const claimTile = (table: TableState | undefined, action: Actions.TileClaimedAction): TableState | undefined => {
     if (isGameStarted(table) && table.turn == action.payload.set.payload.turn && table.gameId == action.payload.gameId) {
         const playerState = table.states.map(ps => {
             const playerPosition = ps.payload.player.payload.position;
             if (playerPosition === action.payload.position) {
+                //we have to remove from the hand 2 other tiles.
+                console.log(action.payload.set.payload.tiles);
+                let updatedClosedHand = removeTilesFromHand(ps.payload.closedHand, action.payload.set);
                 return {
                     type: ps.type,
                     payload: {
                         ...ps.payload,
+                        closedHand: updatedClosedHand,
                         openHand: [...ps.payload.openHand, action.payload.set],
                     }
                 }

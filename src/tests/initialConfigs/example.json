@@ -1,0 +1,58 @@
+{
+  "type": "RiichiConfig",
+  "payload": {
+    "defaultEastAi": "Duck",
+    "defaultSouthAi": "Duck",
+    "defaultWestAi": "Duck",
+    "defaultNorthAi": "Duck",
+    "nextTileDelay": "10 seconds",
+    "turnDuration": "300 seconds",
+    "testingTiles": {
+      "type": "TestingState",
+      "payload": {
+        "eastHand": [
+          "3_pin",
+          "1_wan",
+          "2_wan",
+          "3_wan",
+          "4_wan",
+          "5_wan",
+          "6_wan",
+          "7_wan",
+          "8_wan",
+          "9_wan",
+          "5_sou",
+          "6_sou",
+          "7_sou",
+          "8_sou"
+        ],
+        "southHand": [
+          "4_pin",
+          "5_pin",
+          "red",
+          "red",
+          "red",
+          "1_sou",
+          "2_sou",
+          "3_sou",
+          "1_sou",
+          "2_sou",
+          "3_sou",
+          "2_sou",
+          "4_sou"
+        ],
+        "westHand": [],
+        "northHand": [],
+        "uraDoras": [
+          "2_sou"
+        ],
+        "deadWall": [],
+        "wall": [
+          "east",
+          "west",
+          "north"
+        ]
+      }
+    }
+  }
+}
